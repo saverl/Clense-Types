@@ -26,9 +26,19 @@ interface Product {
   images: string[];
   details: string;
   seller: string;
+  averageRating: number;
+  totalRatings: number;
+  reviews: Review[];
 
   material?: string;
   keywords?: string[];
+}
+
+interface Review {
+  title?: string;
+  likes: number;
+  dislikes: number;
+  description: string;
 }
 
 interface ProductType {
