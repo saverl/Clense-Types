@@ -20,8 +20,8 @@ export interface Product {
   productFor: "male" | "female";
   name: string;
   description: string;
-  originalPrice: string;
-  offerPrice: string;
+  originalPrice: number;
+  offerPrice: number;
   offerPercent: number;
   images: string[];
   details: string;
@@ -34,14 +34,14 @@ export interface Product {
   keywords?: string[];
 }
 
-interface Review {
+export interface Review {
   title?: string;
   likes: number;
   dislikes: number;
   description: string;
 }
 
-interface ProductType {
+export interface ProductType {
   isUpperBody: boolean;
   isLowerBody: boolean;
   isFullBody: boolean;
@@ -105,7 +105,7 @@ export interface Order {
   lastUpdatedAt: Date;
 }
 
-interface Address {
+export interface Address {
   name: string;
   phoneNumber: string;
   address: string;
