@@ -1,23 +1,23 @@
-interface User {
+export interface User {
   name: string;
   email: string;
   uid: string;
-  status: string;
+  status: "normal" | "pro";
   coins: number;
-  gender: Gender;
-  addresses: Address[];
+  gender: "male" | "female";
 
   dob?: Date;
+  addresses?: Address[];
   alternateMobileNo?: string;
   nickname?: string;
   photoUrl?: string;
   phoneNumber?: string;
 }
 
-interface Product {
+export interface Product {
   id: string;
   type: ProductType;
-  for: Gender;
+  productFor: "male" | "female";
   name: string;
   description: string;
   originalPrice: string;
@@ -84,23 +84,23 @@ interface ProductType {
   };
 }
 
-interface Wishlist {
+export interface Wishlist {
   email: string;
-  orderId: string;
+  productId: string;
 }
 
-interface Cart {
+export interface Cart {
   email: string;
-  orderId: string;
+  productId: string;
   createdAt: Date;
   lastUpdatedAt: Date;
 }
 
-interface Order {
+export interface Order {
   email: string;
-  productName: string;
+  productId: string;
   orderId: string;
-  status: Status;
+  status: "shipped" | "delivered";
   createdAt: Date;
   lastUpdatedAt: Date;
 }
@@ -114,11 +114,5 @@ interface Address {
   state: string;
   pinCode: number;
   isDefault: boolean;
-  type: TypeOfAddress;
+  type: "home" | "office";
 }
-
-type Status = "shipped" | "delivered";
-type TypeOfAddress = "home" | "office";
-type Gender = "male" | "female";
-
-export { User, Cart, Order, Wishlist, Product };
