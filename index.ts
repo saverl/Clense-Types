@@ -26,9 +26,12 @@ export interface Product {
   images: string[];
   details: string;
   seller: string;
+  brand: string;
   averageRating: number;
   totalRatings: number;
   reviews: Review[];
+  skuCode: string;
+  binNo: string;
 
   material?: string;
   keywords?: string[];
@@ -41,16 +44,13 @@ export interface Review {
   description: string;
 }
 
+// TODO Create product variation types
 export interface ProductType {
-  isUpperBody: boolean;
-  isLowerBody: boolean;
-  isFullBody: boolean;
-
+  position: "isUpperBody" | "isLowerBody" | "isFullBody";
   sizes: {
     S?: boolean;
     M?: boolean;
     L?: boolean;
-    X?: boolean;
     XL?: boolean;
     XXL?: boolean;
     26?: boolean;
@@ -68,7 +68,6 @@ export interface ProductType {
     S?: number;
     M?: number;
     L?: number;
-    X?: number;
     XL?: number;
     XXL?: number;
     26?: number;
@@ -97,12 +96,23 @@ export interface Cart {
 }
 
 export interface Order {
-  email: string;
-  productId: string;
   orderId: string;
-  status: "shipped" | "delivered";
+  userId: string;
+  status: "processing" | "packed" | "shipped" | "delivered";
   createdAt: Date;
   lastUpdatedAt: Date;
+  quantity: number;
+  amountPaid: number;
+  binNo: string;
+
+  // User
+  email: string;
+  address: Address;
+
+  // Product
+  productId: string;
+  productName: string;
+  skuCode: string;
 }
 
 export interface Address {
