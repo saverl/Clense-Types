@@ -5,6 +5,7 @@ export interface User {
   status: "normal" | "pro";
   coins: number;
   gender: "male" | "female";
+  productsInCart: number;
 
   dob?: Date;
   addresses?: Address[];
@@ -23,6 +24,7 @@ export interface Product {
   originalPrice: number;
   offerPrice: number;
   offerPercent: number;
+  thumbnail: string;
   images: string[];
   details: string;
   seller: string;
@@ -85,34 +87,34 @@ export interface ProductType {
 
 export interface Wishlist {
   email: string;
-  productId: string;
+  productIds: string[];
 }
 
 export interface Cart {
-  email: string;
-  productId: string;
-  createdAt: Date;
   lastUpdatedAt: Date;
+
+  products: {
+    productId: string;
+    quantity: number;
+    skuCode: string;
+    binNo: string;
+  }[];
 }
 
 export interface Order {
   orderId: string;
   userId: string;
+  paymentId: string;
   status: "processing" | "packed" | "shipped" | "delivered";
   createdAt: Date;
-  lastUpdatedAt: Date;
-  quantity: number;
   amountPaid: number;
-  binNo: string;
 
   // User
   email: string;
   address: Address;
 
-  // Product
-  productId: string;
-  productName: string;
-  skuCode: string;
+  // Cart
+  cartItems: Cart;
 }
 
 export interface Address {
