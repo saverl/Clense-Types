@@ -95,6 +95,7 @@ export interface Cart {
 
   products: {
     productId: string;
+    productName: string;
     quantity: number;
     skuCode: string;
     binNo: string;
@@ -102,9 +103,11 @@ export interface Cart {
 }
 
 export interface Order {
+  id: string;
   orderId: string;
   userId: string;
   paymentId: string;
+  paymentType: "COD" | "PREPAID";
   status: "processing" | "packed" | "shipped" | "delivered";
   createdAt: Date;
   amountPaid: number;
