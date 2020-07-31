@@ -31,7 +31,7 @@ abstract class User {
     this.phoneNumber,
     this.nickname,
     this.photoUrl,
-  }) : assert(false);
+  });
 }
 
 abstract class Product {
