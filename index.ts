@@ -115,6 +115,7 @@ export interface Order {
   // User
   email: string;
   address: Address;
+  signature?: string;
 
   // Cart
   cartItems: Cart;
