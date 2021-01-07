@@ -4,11 +4,12 @@ export interface User {
   uid: string;
   status: "normal" | "pro";
   coins: number;
-  gender: "male" | "female";
   productsInCart: number;
+  lastCartUpdatedAt: Date;
+  referralCode: string;
 
+  gender?: "male" | "female";
   dob?: Date;
-  addresses?: Address[];
   alternateMobileNo?: string;
   nickname?: string;
   photoUrl?: string;
@@ -31,19 +32,33 @@ export interface Product {
   brand: string;
   averageRating: number;
   totalRatings: number;
-  reviews: Review[];
+  ratings: Ratings;
+  totalReviews: number;
   skuCode: string;
   binNo: string;
+  coins: number;
 
   material?: string;
   keywords?: string[];
 }
 
+export interface Ratings {
+  1: number;
+  2: number;
+  3: number;
+  4: number;
+  5: number;
+}
+
 export interface Review {
-  title?: string;
+  id: string;
+  uid: string;
   likes: number;
   dislikes: number;
   description: string;
+  stars: number;
+
+  title?: string;
 }
 
 // TODO Create product variation types
@@ -86,20 +101,24 @@ export interface ProductType {
 }
 
 export interface Wishlist {
+  id: string;
   email: string;
-  productIds: string[];
+  productId: string;
 }
 
 export interface Cart {
-  lastUpdatedAt: Date;
-
-  products: {
-    productId: string;
-    productName: string;
-    quantity: number;
-    skuCode: string;
-    binNo: string;
-  }[];
+  id: string;
+  productId: string;
+  productName: string;
+  productDescription: string;
+  productThumbnail: string;
+  productOfferPrice: number;
+  productOfferPercent: number;
+  productOriginalPrice: number;
+  quantity: number;
+  coins: number;
+  skuCode: string;
+  binNo: string;
 }
 
 export interface Order {
@@ -122,6 +141,7 @@ export interface Order {
 }
 
 export interface Address {
+  id: string;
   name: string;
   phoneNumber: string;
   address: string;
@@ -129,6 +149,5 @@ export interface Address {
   city: string;
   state: string;
   pinCode: number;
-  isDefault: boolean;
   type: "home" | "office";
 }
